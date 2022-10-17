@@ -1,0 +1,9 @@
+utils\AllureHelper.class
+api\models\Specifications.class
+api\pojoClasses\SuccessRegisterPojo.class
+api\pojoClasses\RegisterPojo.class
+api\pojoClasses\UserDataPojo.class
+utils\JsonUtil.class
+api\models\RestAssuredRequestFilter.class
+api\pojoClasses\MainPojo.class
+utils\CommonListener.class

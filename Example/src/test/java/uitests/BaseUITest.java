@@ -24,4 +24,5 @@ public class BaseUITest {
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
 
+
 }

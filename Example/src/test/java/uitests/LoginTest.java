@@ -15,7 +15,9 @@ public class LoginTest extends BaseUITest {
     @TmsLink("C5960672")
     @Test(description = "visibility of bank logo")
     public void checkALogoPresence() {
-        assertTrue(loginPage.checkBankLogo());
+        assertTrue(loginPage.checkBankLogos());
     }
+
+
 
 }

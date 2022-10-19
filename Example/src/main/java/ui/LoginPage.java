@@ -15,6 +15,7 @@ import static java.time.Duration.ofSeconds;
 public class LoginPage extends BasePage {
 
     private SelenideElement aLogo = $(By.xpath("//div[contains(@class, 'sc-cabOPr ikNyeA')]"));
+    private SelenideElement logoAnimation = $(By.xpath("//span[@class= 'sc-iTFTee cdTuVt']"));
 
     final static String START_URL = PropertyHelper.getProperty("start.url");
 
@@ -23,11 +24,11 @@ public class LoginPage extends BasePage {
         return new LoginPage();
     }
 
-    @Step("Visibility of bank logo")
-    public boolean checkBankLogo() {
+    @Step("Visibility of bank logos")
+    public boolean checkBankLogos() {
         this.getALogo().shouldBe(Condition.visible, ofSeconds(10)).isDisplayed();
+        this.getLogoAnimation(); //mistake
         return true;
     }
-
 
 }

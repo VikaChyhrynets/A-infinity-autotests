@@ -1,7 +1,7 @@
 .idea
-Example/.allure
+.allure
 allure-results
 build
 target
 targetsiteallure-maven-plugin
-Example.iml
+src/main/main1.iml

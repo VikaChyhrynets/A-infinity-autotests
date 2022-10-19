@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/A-infinity-autotests.iml" filepath="$PROJECT_DIR$/.idea/A-infinity-autotests.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Example/Example.iml" filepath="$PROJECT_DIR$/Example/Example.iml" />
     </modules>
   </component>
 </project>

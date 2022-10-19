@@ -1,0 +1,7 @@
+.idea
+Example/.allure
+allure-results
+build
+target
+targetsiteallure-maven-plugin
+Example.iml

@@ -1,4 +1,4 @@
 apitests\ReqresTest.class
 apitests\BaseTestAPI.class
 uitests\BaseUITest.class
-uitests\LoginPageTest.class
+uitests\LoginTest.class

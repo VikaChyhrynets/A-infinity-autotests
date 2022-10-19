@@ -1,3 +1,4 @@
+ui\BasePage.class
 utils\AllureHelper.class
 api\models\Specifications.class
 api\pojoClasses\SuccessRegisterPojo.class
@@ -5,7 +6,6 @@ ui\LoginPage.class
 api\pojoClasses\RegisterPojo.class
 api\pojoClasses\UserDataPojo.class
 utils\JsonUtil.class
-ui\MainPage.class
 api\models\RestAssuredRequestFilter.class
 utils\PropertyHelper.class
 api\pojoClasses\MainPojo.class

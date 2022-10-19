@@ -130,8 +130,15 @@
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
-            <version>6.4.0</version>
+            <version>${selenide.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>5.24.0</version>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -148,15 +155,15 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.codeborne</groupId>
-            <artifactId>selenide</artifactId>
-            <version>5.24.0</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.6.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide-core</artifactId>
+            <version>6.4.0</version>
             <scope>compile</scope>
         </dependency>
 

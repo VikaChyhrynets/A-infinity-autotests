@@ -19,5 +19,4 @@ public class LoginTest extends BaseUITest {
     }
 
 
-
 }

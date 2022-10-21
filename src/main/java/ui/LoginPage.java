@@ -25,6 +25,12 @@ public class LoginPage extends BasePage {
     private SelenideElement buttonEnglishLanguage = $(By.xpath("//div[@class= 'sc-cjibBx eERZfZ']"));
     private SelenideElement signatureВходOnLoginWindow = $(By.xpath("//h3[@class= 'sc-bqWxrE jMnyrV' and text()= 'Вход']"));
     private SelenideElement signatureLogInOnLoginWindow = $(By.xpath("//h3[@class= 'sc-bqWxrE jMnyrV' and text()= 'Log in']"));
+    private SelenideElement learnMoreButton = $(By.xpath("//button[@class= 'sc-iBYQkv bUJhjl']"));
+    private SelenideElement advertisementText = $(By.xpath("//h2[@class= 'sc-gKPRtg dgZqlG']"));
+    private SelenideElement paginationElement = $(By.xpath("//div[@class= 'sc-gswNZR dHlgSu']"));
+    private SelenideElement paginationButton1 = $(By.xpath("//div[@class= 'sc-gswNZR dHlgSu']//div[@class= 'sc-dkrFOg efXKez'][1]"));
+    private SelenideElement paginationButton2 = $(By.xpath("//div[@class= 'sc-gswNZR dHlgSu']//div[@class= 'sc-dkrFOg efXKez'][2]"));
+    private SelenideElement scrollBlockButton = $(By.xpath("//div[@class= 'sc-ftTHYK dsVtTr']"));
 
     final static String START_URL = PropertyHelper.getProperty("start.url");
 
@@ -78,7 +84,37 @@ public class LoginPage extends BasePage {
         return this;
     }
 
+    @Step("Check the button 'Learn more'")
+    public boolean checkLearnMoreButton() {
+        assertTrue(this.getLearnMoreButton().shouldBe(Condition.visible, ofSeconds(10)).isDisplayed());
+        return true;
+    }
 
+    @Step("Check the advertisement text")
+    public boolean checkAdvertisementText() {
+        assertTrue(this.getAdvertisementText().shouldBe(Condition.visible, ofSeconds(10)).isDisplayed());
+        return true;
+    }
+
+    @Step("Check pagination element")
+    public boolean checkPaginationElement() {
+        assertTrue(this.getPaginationElement().shouldBe(Condition.visible, ofSeconds(10)).isDisplayed());
+        return true;
+    }
+
+    @Step("Check pagination element")
+    public LoginPage checkPaginationElementFunctionality() {
+        this.getPaginationButton1().shouldBe(Condition.visible, ofSeconds(10)).click();
+        sleep(5000);
+        this.getPaginationButton2().shouldBe(Condition.visible, ofSeconds(10)).click();
+        return this;
+    }
+
+    @Step("Check button 'Scroll block'")
+    public boolean checkScrollBlockButton() {
+        assertTrue(this.getScrollBlockButton().shouldBe(Condition.visible, ofSeconds(10)).isDisplayed());
+        return true;
+    }
 
 
 }

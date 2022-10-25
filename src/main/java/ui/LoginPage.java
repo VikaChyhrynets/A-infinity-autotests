@@ -9,9 +9,14 @@ import org.openqa.selenium.By;
 import utils.PageWebElements;
 import utils.PropertyHelper;
 
+import java.util.Set;
+
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.actions;
 import static com.codeborne.selenide.Selenide.sleep;
+import static com.codeborne.selenide.Selenide.webdriver;
+import static com.codeborne.selenide.WebDriverRunner.driver;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static java.time.Duration.ofSeconds;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -31,6 +36,10 @@ public class LoginPage extends BasePage {
     private SelenideElement paginationButton1 = $(By.xpath("//div[@class= 'sc-gswNZR dHlgSu']//div[@class= 'sc-dkrFOg efXKez'][1]"));
     private SelenideElement paginationButton2 = $(By.xpath("//div[@class= 'sc-gswNZR dHlgSu']//div[@class= 'sc-dkrFOg efXKez'][2]"));
     private SelenideElement scrollBlockButton = $(By.xpath("//div[@class= 'sc-ftTHYK dsVtTr']"));
+    private SelenideElement authorizationBlock = $(By.xpath("//div[@class= 'sc-eDWCr iJWEXl']"));
+    private SelenideElement downloadSignature = $(By.xpath("//p[@class= 'sc-csuSiG iOOaX']"));
+    private SelenideElement downloadAppStoreButton = $(By.xpath("//a[contains(@href, 'https://www.apple.com/app-store/')]"));
+    private SelenideElement downloadGooglePlayButton = $(By.xpath("//a[@class= 'sc-iJnaPW iqrwfH'][2]"));
 
     final static String START_URL = PropertyHelper.getProperty("start.url");
 
@@ -114,6 +123,46 @@ public class LoginPage extends BasePage {
     public boolean checkScrollBlockButton() {
         assertTrue(this.getScrollBlockButton().shouldBe(Condition.visible, ofSeconds(10)).isDisplayed());
         return true;
+    }
+
+    @Step("Visibility of authorization block")
+    public boolean checkAuthBlock() {
+        assertTrue(this.getAuthorizationBlock().shouldBe(Condition.visible, ofSeconds(10)).isDisplayed());
+        return true;
+    }
+
+    @Step("Check download possibility")
+    public boolean checkDownloadElements() {
+        assertEquals(this.getDownloadSignature().getText(), PageWebElements.DOWNLOAD_SIGNATURE);
+        assertTrue(this.getDownloadAppStoreButton().shouldBe(Condition.visible, ofSeconds(10)).isDisplayed());
+        assertTrue(this.getDownloadGooglePlayButton().shouldBe(Condition.visible, ofSeconds(10)).isDisplayed());
+        return true;
+    }
+
+    @Step("Check APPStore download button functionality")
+    public LoginPage checkAppStoreDownloadButtonsFunctionality() {
+        this.getDownloadAppStoreButton().click();
+        String mainPageWindow = getWebDriver().getWindowHandle();
+        for (String windowHandle : webdriver().object().getWindowHandles()) {
+            if (!mainPageWindow.contentEquals(windowHandle)) {
+                getWebDriver().switchTo().window(windowHandle);
+                break;
+            }
+        }
+        return this;
+    }
+
+    @Step("Check APPStore download button functionality")
+    public LoginPage checkGooglePlayDownloadButtonsFunctionality() {
+        this.getDownloadGooglePlayButton().click();
+        String mainPageWindow = getWebDriver().getWindowHandle();
+        for (String windowHandle : webdriver().object().getWindowHandles()) {
+            if (!mainPageWindow.contentEquals(windowHandle)) {
+                getWebDriver().switchTo().window(windowHandle);
+                break;
+            }
+        }
+        return this;
     }
 
 

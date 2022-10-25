@@ -15,14 +15,14 @@ public class LoginTest extends BaseUITest {
 
     @Story("US-1.1 Main Page")
     @TmsLinks({@TmsLink("C5960672"), @TmsLink("C5993211")})
-    @Test(description = "visibility of bank logos")
+    @Test(description = "Visibility of bank logos")
     public void checkALogoPresence() {
         loginPage.checkBothBankLogoElements();
     }
 
     @Story("US-1.1 Main Page")
     @TmsLink("C5973220")
-    @Test(description = "open Main page to check EN button enability")
+    @Test(description = "Open Main page to check EN button enability")
     public void checkENButtonGoesFirst() {
         loginPage.checkENButtonFirst();
         loginPage.closeWindow().open().checkENButtonFirst();
@@ -30,7 +30,7 @@ public class LoginTest extends BaseUITest {
 
     @Story("US-1.1 Main Page")
     @TmsLink("C5993315")
-    @Test(description = "functionality of the buttons RU/EN is verified")
+    @Test(description = "Functionality of the buttons RU/EN is verified")
     public void checkRUandENButtons() {
         loginPage.checkRULanguageButton();
         loginPage.closeWindow();
@@ -40,8 +40,8 @@ public class LoginTest extends BaseUITest {
     }
 
     @Story("US-1.1 Main Page")
-    @TmsLink("C5960939")
-    @Test(description = "check the availability elements of Slider")
+    @TmsLinks({@TmsLink("C5960939"), @TmsLink("C5993609"), @TmsLink("C5993613")})
+    @Test(description = "Check the availability elements of Slider")
     public void checkSliderElementsAvailability() {
         loginPage.checkLearnMoreButton();
         loginPage.checkAdvertisementText();
@@ -50,5 +50,28 @@ public class LoginTest extends BaseUITest {
         loginPage.checkScrollBlockButton();
     }
 
+    @Story("US-1.1 Main Page")
+    @TmsLink("C5994972")
+    @Test(description = "Presence of authorization block")
+    public void checkAuthorizationBlock() {
+        loginPage.checkAuthBlock();
+    }
+
+    @Story("US-1.1 Main Page")
+    @TmsLinks({@TmsLink("C5993620"), @TmsLink("C5960985"), @TmsLink("C5993619")})
+    @Test(description = "Presence of authorization block")
+    public void checkDownloadElements() {
+        loginPage.checkDownloadElements();
+    }
+
+    @Story("US-1.1 Main Page")
+    @TmsLinks({@TmsLink("C5960984"), @TmsLink("C5973202")})
+    @Test(description = "Click on the download button to verify its functionality")
+    public void downloadButtonsFunctionality() {
+        loginPage.checkAppStoreDownloadButtonsFunctionality();
+        loginPage.closeWindow();
+        loginPage.open();
+        loginPage.checkGooglePlayDownloadButtonsFunctionality();
+    }
 
 }

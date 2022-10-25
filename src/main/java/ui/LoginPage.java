@@ -9,13 +9,11 @@ import org.openqa.selenium.By;
 import utils.PageWebElements;
 import utils.PropertyHelper;
 
-import java.util.Set;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.actions;
 import static com.codeborne.selenide.Selenide.sleep;
 import static com.codeborne.selenide.Selenide.webdriver;
-import static com.codeborne.selenide.WebDriverRunner.driver;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static java.time.Duration.ofSeconds;
 import static org.testng.Assert.assertEquals;

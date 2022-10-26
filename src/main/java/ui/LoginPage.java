@@ -1,23 +1,16 @@
 package ui;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import lombok.Data;
 import org.openqa.selenium.By;
-import utils.PageWebElements;
 import utils.PropertyHelper;
 
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.actions;
 import static com.codeborne.selenide.Selenide.sleep;
-import static com.codeborne.selenide.Selenide.webdriver;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static java.time.Duration.ofSeconds;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 @Data
 public class LoginPage extends BasePage {
@@ -48,7 +41,7 @@ public class LoginPage extends BasePage {
 
     @Step("Visibility of bank logo")
     public boolean checkBankLogo() {
-        this.getALogo().shouldBe(Condition.visible, ofSeconds(10)).isDisplayed();
+        element.expectedVisibilityOfWebElements(getALogo(), 5).isDisplayed(getALogo());
         return true;
     }
 
@@ -58,16 +51,9 @@ public class LoginPage extends BasePage {
         return true;
     }
 
-    @Step("Check visibility of both bank logo elements")
-    public boolean checkBothBankLogoElements() {
-        assertTrue(this.checkBankLogo());
-        assertTrue(this.checkBankLogoText());
-        return true;
-    }
-
     @Step("Check EN button")
     public boolean checkENButtonFirst() {
-        this.getButtonEnglishLanguage().shouldBe(Condition.enabled).shouldBe(Condition.visible, ofSeconds(10));
+        element.checkButtonEnability(getButtonEnglishLanguage()).expectedVisibilityOfWebElements(getButtonEnglishLanguage(),5);
         return true;
     }
 
@@ -79,87 +65,77 @@ public class LoginPage extends BasePage {
 
     @Step("Check RU/EN buttons functionality. Step 1")
     public LoginPage checkRULanguageButton() {
-        this.getButtonRussianLanguage().shouldBe(Condition.visible, ofSeconds(10)).click();
-        assertEquals(this.getSignatureВходOnLoginWindow().getText(), PageWebElements.LOG_IN_RU_SIGNATURE_ON_LOGIN_WINDOW);
+        element.expectedVisibilityOfWebElements(getButtonRussianLanguage(), 5).isDisplayed(getButtonRussianLanguage());
         return this;
     }
 
     @Step("Check RU/EN buttons functionality. Step 2")
     public LoginPage checkENLanguageButton() {
-        this.getButtonEnglishLanguage().shouldBe(Condition.visible, ofSeconds(10)).click();
-        assertEquals(this.getSignatureLogInOnLoginWindow().getText(), PageWebElements.LOG_IN_EN_SIGNATURE_ON_LOGIN_WINDOW);
+        element.expectedVisibilityOfWebElements(getButtonEnglishLanguage(), 5).click(getButtonEnglishLanguage());
         return this;
-    }
-
-    @Step("Check the button 'Learn more'")
-    public boolean checkLearnMoreButton() {
-        assertTrue(this.getLearnMoreButton().shouldBe(Condition.visible, ofSeconds(10)).isDisplayed());
-        return true;
-    }
-
-    @Step("Check the advertisement text")
-    public boolean checkAdvertisementText() {
-        assertTrue(this.getAdvertisementText().shouldBe(Condition.visible, ofSeconds(10)).isDisplayed());
-        return true;
-    }
-
-    @Step("Check pagination element")
-    public boolean checkPaginationElement() {
-        assertTrue(this.getPaginationElement().shouldBe(Condition.visible, ofSeconds(10)).isDisplayed());
-        return true;
     }
 
     @Step("Check pagination element")
     public LoginPage checkPaginationElementFunctionality() {
-        this.getPaginationButton1().shouldBe(Condition.visible, ofSeconds(10)).click();
+        element.expectedVisibilityOfWebElements(getPaginationButton1(), 5).click(getPaginationButton1());
         sleep(5000);
-        this.getPaginationButton2().shouldBe(Condition.visible, ofSeconds(10)).click();
+        element.expectedVisibilityOfWebElements(getPaginationButton2(), 5).click(getPaginationButton2());
         return this;
     }
 
-    @Step("Check button 'Scroll block'")
-    public boolean checkScrollBlockButton() {
-        assertTrue(this.getScrollBlockButton().shouldBe(Condition.visible, ofSeconds(10)).isDisplayed());
+    @Step("Check button 'Learn more'")
+    public boolean checkLearnMoreButton() {
+        element.expectedVisibilityOfWebElements(getLearnMoreButton(), 5).isDisplayed(getLearnMoreButton());
         return true;
     }
 
-    @Step("Visibility of authorization block")
-    public boolean checkAuthBlock() {
-        assertTrue(this.getAuthorizationBlock().shouldBe(Condition.visible, ofSeconds(10)).isDisplayed());
+    @Step("Check advertisement text")
+    public boolean checkAdvertisementText() {
+        element.expectedVisibilityOfWebElements(getAdvertisementText(), 5).isDisplayed(getAdvertisementText());
         return true;
     }
 
-    @Step("Check download possibility")
-    public boolean checkDownloadElements() {
-        assertEquals(this.getDownloadSignature().getText(), PageWebElements.DOWNLOAD_SIGNATURE);
-        assertTrue(this.getDownloadAppStoreButton().shouldBe(Condition.visible, ofSeconds(10)).isDisplayed());
-        assertTrue(this.getDownloadGooglePlayButton().shouldBe(Condition.visible, ofSeconds(10)).isDisplayed());
+    @Step("Check if pagination element is present")
+    public boolean checkPaginationElement() {
+        element.expectedVisibilityOfWebElements(getPaginationElement(), 5).isDisplayed(getPaginationElement());
+        return true;
+    }
+
+    @Step("Check scroll button presence")
+    public boolean checkScrollButton() {
+        element.expectedVisibilityOfWebElements(getScrollBlockButton(), 5).isDisplayed(getScrollBlockButton());
+        return true;
+    }
+
+    @Step("Check if Log in block is present")
+    public boolean checkAuthorizationBlock() {
+        element.expectedVisibilityOfWebElements(getAuthorizationBlock(), 5).isDisplayed(getAuthorizationBlock());
+        return true;
+    }
+
+    @Step("Check if 'Download on the AppStore' button is present")
+    public boolean checkAppStoreButton() {
+        element.expectedVisibilityOfWebElements(getDownloadAppStoreButton(), 5).isDisplayed(getDownloadAppStoreButton());
+        return true;
+    }
+
+    @Step("Check if 'Get it on GooglePlay' button is present")
+    public boolean checkGooglePlayButton() {
+        element.expectedVisibilityOfWebElements(getDownloadGooglePlayButton(), 5).isDisplayed(getDownloadGooglePlayButton());
         return true;
     }
 
     @Step("Check APPStore download button functionality")
     public LoginPage checkAppStoreDownloadButtonsFunctionality() {
-        this.getDownloadAppStoreButton().click();
-        String mainPageWindow = getWebDriver().getWindowHandle();
-        for (String windowHandle : webdriver().object().getWindowHandles()) {
-            if (!mainPageWindow.contentEquals(windowHandle)) {
-                getWebDriver().switchTo().window(windowHandle);
-                break;
-            }
-        }
+        element.click(getDownloadAppStoreButton());
+        element.switchToAnotherWindow();
         return this;
     }
 
     @Step("Check APPStore download button functionality")
     public LoginPage checkGooglePlayDownloadButtonsFunctionality() {
-        this.getDownloadGooglePlayButton().click();
-        String mainPageWindow = getWebDriver().getWindowHandle();
-        for (String windowHandle : webdriver().object().getWindowHandles()) {
-            if (!mainPageWindow.contentEquals(windowHandle)) {
-                getWebDriver().switchTo().window(windowHandle);
-                break;
-            }
-        }
+        element.click(getDownloadGooglePlayButton());
+        element.switchToAnotherWindow();
         return this;
     }
 

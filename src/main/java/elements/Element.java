@@ -3,7 +3,6 @@ package elements;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
-
 import static com.codeborne.selenide.Selenide.webdriver;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static java.time.Duration.ofSeconds;
@@ -41,5 +40,9 @@ public class Element {
         return this;
     }
 
+    public Element sendKeys(SelenideElement element, String data) {
+        element.sendKeys(data);
+        return this;
+    }
 
 }
